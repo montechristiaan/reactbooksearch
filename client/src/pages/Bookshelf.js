@@ -29,10 +29,9 @@ class Bookshelf extends Component {
     return (
       <div className="container">
         <Jumbotron
-          title="My Bookshelf"
-          lead="All of Your Saved Books in One Convenient Location."
-          instructions="View your book at Google, or remove it from your Bookshelf..."
-          image="https://i0.wp.com/www.wayfaringviews.com/wp-content/uploads/2016/05/Last_Bookstore.jpg?ssl=1"
+          title="Saved Books"
+          lead="View More Details or Delete Your Books"
+          image="http://culture.affinitymagazine.us/wp-content/uploads/2017/05/635873821517718970351055939_Stack-of-books-great-education.jpg"
         />
         <BookCard
           books={this.state.books}

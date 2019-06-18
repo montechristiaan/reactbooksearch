@@ -5,7 +5,7 @@ function Index() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <Link className="navbar-brand" to="/">
-          MERN Digital Library
+          React Book Search
         </Link>
       <div className="container">
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -24,7 +24,7 @@ function Index() {
               <Link to="/bookshelf"
                     className={window.location.pathname === "/bookshelf"
                       ? "nav-link active"
-                      : "nav-link"}>My Bookshelf</Link>
+                      : "nav-link"}>Saved Books</Link>
             </li>
           </ul>
         </div>
