@@ -1,26 +1,27 @@
-const express = require('express');
-const PORT = process.env.PORT || 3001;
+require('dotenv').config();
+const express = require("express");
 const app = express();
-const routes = require('./routes');
-const mongoose = require('mongoose');
-mongoose.set('useCreateIndex', true);
+const PORT = process.env.PORT || 3001;
 
-// Define Middleware Here -------------------------------------
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Serve Up Static Assets (usually on Heroku) -----------------
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'))
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
 }
 
-// Define API Routes Here -------------------------------------
-app.use(routes);
+const mongoose = require("mongoose");
+const mongoURL = process.env.PROD_MONGODB || "mongodb://localhost/reactbooksearch";
+mongoose.connect(mongoURL, {useNewUrlParser: true})
+  .then(() => {
+    console.log("Successfully connected to mongoDB.");
+  })
+  .catch((err) => {
+    console.log(`Error connecting to mongoDB: ${err}`);
+  });
 
-// Connect to the MongoDB Database ----------------------------
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/reactbooksearch';
-mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
+require("./routes/api-routes")(app);
 
 app.listen(PORT, () => {
-  console.log(`API Server now on port: ${PORT}`)
+  console.log(`API server now on port ${PORT}!`);
 });
